@@ -1,4 +1,4 @@
-import Navbar from './Navbar'
+import Navbar from './NavBar'
 import Hero from './Hero'
 import Projects from './Projects'
 import BlogMarquee from './BlogMarquee'
