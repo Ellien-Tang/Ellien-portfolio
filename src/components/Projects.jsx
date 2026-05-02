@@ -1,8 +1,36 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { projects } from '../data/projects'
+import { api } from '../services/api'
 import ProjectCard from './ProjectCard'
 
 export default function Projects() {
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    api.getProjects()
+      .then(data => setProjects(data))
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [])
+
+  if (loading) {
+    return (
+      <section id="projects" className="py-24 px-6 bg-muted/30">
+        <div className="max-w-6xl mx-auto text-center text-secondary">加载中...</div>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section id="projects" className="py-24 px-6 bg-muted/30">
+        <div className="max-w-6xl mx-auto text-center text-red-500">加载失败: {error}</div>
+      </section>
+    )
+  }
+
   return (
     <section id="projects" className="py-24 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">

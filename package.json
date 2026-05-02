@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "cd server && npm run dev",
+    "seed": "cd server && npm run seed",
+    "docker:build": "docker build -t portfolio-app .",
+    "docker:run": "docker run -p 3000:3000 --env-file .env portfolio-app"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",

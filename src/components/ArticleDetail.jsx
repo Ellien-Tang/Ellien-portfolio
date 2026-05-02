@@ -4,80 +4,72 @@ import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
-import { articles } from '../data/articles'
-import 'highlight.js/styles/github.css'  // 代码高亮主题（浅色）
+import { useState, useEffect } from 'react'
+import { api } from '../services/api'
+import 'highlight.js/styles/github.css'
 
 export default function ArticleDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const article = articles.find(a => a.id === id)
-  
-  if (!article) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-secondary">文章不存在</p>
-      </div>
-    )
-  }
+  const [article, setArticle] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // 返回上一页（保留滚动位置）
+  useEffect(() => {
+    setLoading(true)
+    api.getArticle(id)
+      .then(data => setArticle(data))
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [id])
+
   const handleBack = () => {
     navigate(-1)
   }
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-secondary">加载中...</p>
+      </div>
+    )
+  }
+
+  if (error || !article) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-secondary">{error || '文章不存在'}</p>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-white">
-      {/* 顶部导航 */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-          <button
-            onClick={handleBack}
-            className="flex items-center gap-2 text-secondary hover:text-primary transition-colors"
-          >
+          <button onClick={handleBack} className="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
             <ArrowLeft size={20} />
             <span className="font-medium">返回</span>
           </button>
-          
           <span className="text-sm text-secondary">{article.readTime}</span>
         </div>
       </nav>
 
-      {/* 文章头部 */}
       <header className="pt-32 pb-12 px-6 max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* 标签 */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <div className="flex flex-wrap gap-2 mb-4">
-            {article.tags.map(tag => (
-              <span key={tag} className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">
-                {tag}
-              </span>
+            {article.tags?.map(tag => (
+              <span key={tag} className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">{tag}</span>
             ))}
           </div>
-          
-          {/* 标题 */}
-          <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 leading-tight">
-            {article.title}
-          </h1>
-          
-          {/* 元信息 */}
+          <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 leading-tight">{article.title}</h1>
           <div className="flex items-center gap-4 text-sm text-secondary">
-            <span className="flex items-center gap-1">
-              <Calendar size={14} />
-              {article.date}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock size={14} />
-              {article.readTime}
-            </span>
+            <span className="flex items-center gap-1"><Calendar size={14} /> {article.date}</span>
+            <span className="flex items-center gap-1"><Clock size={14} /> {article.readTime}</span>
           </div>
         </motion.div>
       </header>
 
-      {/* 文章内容 */}
       <motion.article
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -89,92 +81,44 @@ export default function ArticleDetail() {
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeHighlight]}
             components={{
-              // 自定义渲染：代码块
               code({ inline, className, children, ...props }) {
                 const match = /language-(\w+)/.exec(className || '')
                 return !inline && match ? (
                   <div className="relative group">
-                    <div className="absolute right-3 top-2 text-xs text-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity">
-                      {match[1]}
-                    </div>
-                    <pre className={className}>
-                      <code className={className} {...props}>
-                        {children}
-                      </code>
-                    </pre>
+                    <div className="absolute right-3 top-2 text-xs text-secondary/50 opacity-0 group-hover:opacity-100 transition-opacity">{match[1]}</div>
+                    <pre className={className}><code className={className} {...props}>{children}</code></pre>
                   </div>
                 ) : (
-                  <code className="px-1.5 py-0.5 rounded bg-muted text-accent text-sm font-mono" {...props}>
-                    {children}
-                  </code>
+                  <code className="px-1.5 py-0.5 rounded bg-muted text-accent text-sm font-mono" {...props}>{children}</code>
                 )
               },
-              // 自定义渲染：标题
               h2({ children }) {
-                return (
-                  <h2 className="text-2xl font-bold text-primary mt-12 mb-4 pb-2 border-b border-muted">
-                    {children}
-                  </h2>
-                )
+                return <h2 className="text-2xl font-bold text-primary mt-12 mb-4 pb-2 border-b border-muted">{children}</h2>
               },
               h3({ children }) {
-                return (
-                  <h3 className="text-xl font-bold text-primary mt-8 mb-3">
-                    {children}
-                  </h3>
-                )
+                return <h3 className="text-xl font-bold text-primary mt-8 mb-3">{children}</h3>
               },
-              // 自定义渲染：表格
               table({ children }) {
-                return (
-                  <div className="overflow-x-auto my-6">
-                    <table className="w-full text-sm border-collapse">
-                      {children}
-                    </table>
-                  </div>
-                )
+                return <div className="overflow-x-auto my-6"><table className="w-full text-sm border-collapse">{children}</table></div>
               },
               th({ children }) {
-                return (
-                  <th className="px-4 py-3 text-left font-semibold text-primary bg-muted border-b-2 border-muted">
-                    {children}
-                  </th>
-                )
+                return <th className="px-4 py-3 text-left font-semibold text-primary bg-muted border-b-2 border-muted">{children}</th>
               },
               td({ children }) {
-                return (
-                  <td className="px-4 py-3 text-secondary border-b border-muted/50">
-                    {children}
-                  </td>
-                )
+                return <td className="px-4 py-3 text-secondary border-b border-muted/50">{children}</td>
               },
-              // 自定义渲染：引用块
               blockquote({ children }) {
-                return (
-                  <blockquote className="pl-4 border-l-4 border-accent bg-accent/5 py-3 pr-4 rounded-r-lg my-6 text-secondary italic">
-                    {children}
-                  </blockquote>
-                )
+                return <blockquote className="pl-4 border-l-4 border-accent bg-accent/5 py-3 pr-4 rounded-r-lg my-6 text-secondary italic">{children}</blockquote>
               },
-              // 自定义渲染：列表
               ul({ children }) {
-                return (
-                  <ul className="space-y-2 my-4 ml-4">
-                    {children}
-                  </ul>
-                )
+                return <ul className="space-y-2 my-4 ml-4">{children}</ul>
               },
               li({ children }) {
-                return (
-                  <li className="flex items-start gap-2 text-secondary">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                    <span>{children}</span>
-                  </li>
-                )
+                return <li className="flex items-start gap-2 text-secondary"><span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" /><span>{children}</span></li>
               }
             }}
           >
-            {article.content}
+            {article.content || ''}
           </ReactMarkdown>
         </div>
       </motion.article>
