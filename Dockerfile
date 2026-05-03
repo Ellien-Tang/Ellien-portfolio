@@ -17,15 +17,15 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Install backend dependencies
-COPY server/package*.json ./
-RUN npm ci --only=production
+COPY server/package*.json ./server/
+RUN cd server && npm ci --only=production
 
 # Copy backend code
-COPY server/ ./
+COPY server/ ./server/
 
 # Copy built frontend
 COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["node", "server/server.js"]

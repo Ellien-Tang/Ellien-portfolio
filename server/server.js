@@ -39,7 +39,11 @@ app.get('*', (req, res) => {
 })
 
 // Connect MongoDB and start server
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio'
+let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio'
+// Auto-append standard params if missing
+if (MONGODB_URI && !MONGODB_URI.includes('?')) {
+  MONGODB_URI += '?retryWrites=true&w=majority'
+}
 
 mongoose.connect(MONGODB_URI)
   .then(() => {
