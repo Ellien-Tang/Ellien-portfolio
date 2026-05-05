@@ -188,13 +188,70 @@ feat: add admin dashboard for managing projects and articles
 
 ---
 
+### Phase 5：图片粘贴/拖拽上传功能
+
+**需求：**
+用户希望在管理后台写文章和项目时，可以直接粘贴或拖拽图片到 Markdown 编辑器里，自动生成图片链接并插入正文，而不是手动把图片放到 `public/` 目录再手写路径。
+
+**方案设计：**
+
+前后端分离架构下，有三种常见方案：
+1. 手动放 `public/` — 零代码但体验差，每次要重新 build
+2. 第三方图床 — 外链可控性差，后期迁移麻烦
+3. **自建上传接口 + 粘贴/拖拽监听** — 体验最好，图片存在本地，可控性强
+
+用户选择方案 3，于是需要前后端一起改：后端提供 `POST /api/upload`，前端在 textarea 和 input 上监听 `paste` / `drop` 事件。
+
+**添加内容：**
+
+| 文件 | 说明 |
+|------|------|
+| `server/routes/upload.js` | 新增 multer 上传路由，限制 5MB，仅接受图片，保存到 `server/uploads/`，返回 `/uploads/{filename}` |
+| `server/server.js` | 引入 upload 路由；增加 `/uploads` 静态文件服务（放在 dist 之前，避免被 SPA fallback 拦截） |
+| `src/admin/useImageUpload.js` | 前端通用上传 hook：封装 `uploadImage()`、`insertAtCursor()`、`handlePasteImage()`、`handleDropImage()` |
+| `src/admin/ArticleManager.jsx` | 重写 textarea 区域，支持 onPaste / onDrop 上传图片，上传中显示遮罩，成功后在光标处插入 `![...](...)` |
+| `src/admin/ProjectManager.jsx` | 封面图输入框支持 onPaste / onDrop，直接替换 `image` 字段值为上传后的 URL |
+| `src/components/ArticleDetail.jsx` | ReactMarkdown 的 `img` 组件增加圆角、阴影、`loading="lazy"`，提升阅读体验 |
+| `Dockerfile` | 增加 `RUN mkdir -p /app/server/uploads && chmod 755 ...`，确保容器启动时上传目录存在且有写权限 |
+| `docker-compose.yml` | 增加 volumes 挂载 `./uploads:/app/server/uploads`，防止容器重启后图片丢失 |
+
+**遇到的问题与解决：**
+
+| 问题 | 原因 | 解决 |
+|------|------|------|
+| PowerShell 不支持 `&&` 连接命令 | Windows PowerShell 语法差异 | 改用 `;` 分隔命令 |
+| 后端语法检查超时 | `node --check` 对 `server.js` 通过，但启动时会阻塞等待 MongoDB | 改用 `node --check` 做静态语法检查，测试上传时另起进程并设短超时 |
+| Invoke-WebRequest 不支持 `-Form` | PowerShell 5.1 缺少该参数 | 改用 `curl.exe` 直接调用系统 curl |
+| 进程残留导致端口占用 | 测试服务器启动后未正常退出 | 通过端口查找并强制结束进程 |
+| git 提交前未清理测试文件 | `server/test-server.err` 和 `server/uploads/` 下的测试图片不应进仓库 | 提交前手动删除测试产物，保留空 `uploads/` 目录 |
+
+**Git 提交：**
+```
+feat: support image paste/drop upload in markdown editor
+
+- Add multer-based /api/upload endpoint for image uploads
+- Serve uploaded images via /uploads static route
+- Add useImageUpload hook with paste/drop handlers
+- ArticleManager: support paste/drop image into textarea
+- ProjectManager: support paste/drop image for cover image field
+- ArticleDetail: style markdown images with rounded corners and shadow
+- Update Dockerfile to ensure uploads directory exists
+- Add uploads volume to docker-compose for persistence
+
+chore: bump version to v1.0.4
+```
+
+构建 `v1.0.4` 推送。
+
+---
+
 ## 最终部署配置
 
 ### Sealos 应用配置
 
 | 配置项 | 值 |
 |--------|-----|
-| 镜像地址 | `crpi-htlq24wphi9j4514.cn-hangzhou.personal.cr.aliyuncs.com/ellien-tang/ellien-portfolio:v1.0.3` |
+| 镜像地址 | `crpi-htlq24wphi9j4514.cn-hangzhou.personal.cr.aliyuncs.com/ellien-tang/ellien-portfolio:v1.0.4` |
 | 容器端口 | `3000` |
 | CPU | `0.5` 核 |
 | 内存 | `512Mi` |
