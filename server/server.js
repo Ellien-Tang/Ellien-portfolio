@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url'
 
 import projectRoutes from './routes/projects.js'
 import articleRoutes from './routes/articles.js'
+import uploadRoutes from './routes/upload.js'
 
 dotenv.config()
 
@@ -23,11 +24,16 @@ app.use(express.json())
 // API Routes
 app.use('/api/projects', projectRoutes)
 app.use('/api/articles', articleRoutes)
+app.use('/api/upload', uploadRoutes)
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', db: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected' })
 })
+
+// Serve uploaded images
+const uploadsPath = path.join(__dirname, 'uploads')
+app.use('/uploads', express.static(uploadsPath))
 
 // Serve static files from React build
 const distPath = path.join(__dirname, '../dist')

@@ -22,6 +22,7 @@ RUN cd server && npm ci --only=production
 
 # Copy backend code
 COPY server/ ./server/
+RUN mkdir -p /app/server/uploads && chmod 755 /app/server/uploads
 
 # Copy built frontend
 COPY --from=builder /app/dist ./dist

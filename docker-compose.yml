@@ -8,4 +8,6 @@ services:
     environment:
       - PORT=3000
       - MONGODB_URI=${MONGODB_URI}
+    volumes:
+      - ./uploads:/app/server/uploads
     restart: unless-stopped

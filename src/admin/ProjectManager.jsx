@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { uploadImage, handlePasteImage, handleDropImage } from './useImageUpload.js'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -13,6 +14,9 @@ export default function ProjectManager() {
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState(null)
   const [form, setForm] = useState({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', highlights: '' })
+  const [uploadingField, setUploadingField] = useState(null)
+  const [dragOverField, setDragOverField] = useState(null)
+  const imageInputRef = useRef(null)
 
   const load = () => {
     setLoading(true)
@@ -69,6 +73,33 @@ export default function ProjectManager() {
     load()
   }
 
+  const doUpload = useCallback(async (file, field) => {
+    setUploadingField(field)
+    try {
+      const url = await uploadImage(file)
+      setForm(prev => ({ ...prev, [field]: url }))
+    } catch (err) {
+      alert('上传失败：' + err.message)
+    } finally {
+      setUploadingField(null)
+    }
+  }, [])
+
+  const onPasteField = (e, field) => {
+    const handled = handlePasteImage(e, (file) => doUpload(file, field))
+    if (handled) {
+      e.preventDefault()
+    }
+  }
+
+  const onDropField = (e, field) => {
+    setDragOverField(null)
+    const handled = handleDropImage(e, (file) => doUpload(file, field))
+    if (handled) {
+      e.preventDefault()
+    }
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -81,7 +112,27 @@ export default function ProjectManager() {
           <input placeholder="ID（英文，唯一标识）" value={form.id} onChange={e => setForm({...form, id: e.target.value})} disabled={!!editing} className="px-3 py-2 border rounded-lg text-sm disabled:bg-gray-100" />
           <input placeholder="标题" value={form.title} onChange={e => setForm({...form, title: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <input placeholder="描述" value={form.description} onChange={e => setForm({...form, description: e.target.value})} className="px-3 py-2 border rounded-lg text-sm md:col-span-2" />
-          <input placeholder="封面图路径，如 /project.jpg" value={form.image} onChange={e => setForm({...form, image: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
+
+          <div
+            className={`relative md:col-span-2 border rounded-lg px-3 py-2 transition-colors ${dragOverField === 'image' ? 'border-blue-500 bg-blue-50' : ''}`}
+            onDragOver={(e) => { e.preventDefault(); setDragOverField('image') }}
+            onDragLeave={() => setDragOverField(null)}
+            onDrop={(e) => onDropField(e, 'image')}
+          >
+            <label className="block text-xs text-gray-500 mb-1">封面图路径（支持粘贴 / 拖拽上传图片）</label>
+            <input
+              ref={imageInputRef}
+              placeholder="封面图路径，如 /project.jpg 或粘贴图片"
+              value={form.image}
+              onChange={e => setForm({...form, image: e.target.value})}
+              onPaste={(e) => onPasteField(e, 'image')}
+              className="w-full text-sm bg-transparent outline-none"
+            />
+            {uploadingField === 'image' && (
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-blue-600">上传中...</span>
+            )}
+          </div>
+
           <input placeholder="GitHub 地址" value={form.github} onChange={e => setForm({...form, github: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <input placeholder="标签，逗号分隔，如 React, Node.js" value={form.tags} onChange={e => setForm({...form, tags: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <input placeholder="技术图标，逗号分隔" value={form.techIcons} onChange={e => setForm({...form, techIcons: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />

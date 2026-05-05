@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { uploadImage, insertAtCursor, handlePasteImage, handleDropImage } from './useImageUpload.js'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -13,6 +14,9 @@ export default function ArticleManager() {
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState(null)
   const [form, setForm] = useState({ id: '', title: '', summary: '', content: '', tags: '', date: '', readTime: '' })
+  const [uploading, setUploading] = useState(false)
+  const [dragOver, setDragOver] = useState(false)
+  const textareaRef = useRef(null)
 
   const load = () => {
     setLoading(true)
@@ -67,6 +71,36 @@ export default function ArticleManager() {
     load()
   }
 
+  const doUpload = useCallback(async (file) => {
+    if (!file || !textareaRef.current) return
+    setUploading(true)
+    try {
+      const url = await uploadImage(file)
+      const markdown = `\n![${file.name}](${url})\n`
+      insertAtCursor(textareaRef.current, markdown)
+      setForm(prev => ({ ...prev, content: textareaRef.current.value }))
+    } catch (err) {
+      alert('上传失败：' + err.message)
+    } finally {
+      setUploading(false)
+    }
+  }, [])
+
+  const onPaste = (e) => {
+    const handled = handlePasteImage(e, doUpload)
+    if (handled) {
+      e.preventDefault()
+    }
+  }
+
+  const onDrop = (e) => {
+    setDragOver(false)
+    const handled = handleDropImage(e, doUpload)
+    if (handled) {
+      e.preventDefault()
+    }
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -82,7 +116,30 @@ export default function ArticleManager() {
           <input placeholder="日期，如 2025-05-03" value={form.date} onChange={e => setForm({...form, date: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <input placeholder="阅读时间，如 8 min" value={form.readTime} onChange={e => setForm({...form, readTime: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <input placeholder="标签，逗号分隔" value={form.tags} onChange={e => setForm({...form, tags: e.target.value})} className="px-3 py-2 border rounded-lg text-sm md:col-span-2" />
-          <textarea placeholder="Markdown 正文内容" value={form.content} onChange={e => setForm({...form, content: e.target.value})} rows={10} className="px-3 py-2 border rounded-lg text-sm font-mono md:col-span-2" />
+          <div className="md:col-span-2">
+            <label className="block text-xs text-gray-500 mb-1">Markdown 正文内容（支持粘贴 / 拖拽上传图片）</label>
+            <div
+              className={`relative border rounded-lg transition-colors ${dragOver ? 'border-blue-500 bg-blue-50' : ''}`}
+              onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={onDrop}
+            >
+              <textarea
+                ref={textareaRef}
+                placeholder="Markdown 正文内容"
+                value={form.content}
+                onChange={e => setForm({...form, content: e.target.value})}
+                onPaste={onPaste}
+                rows={14}
+                className="w-full px-3 py-2 text-sm font-mono bg-transparent outline-none resize-y"
+              />
+              {uploading && (
+                <div className="absolute inset-0 bg-white/70 flex items-center justify-center rounded-lg">
+                  <span className="text-sm text-blue-600">图片上传中...</span>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         <div className="flex gap-3 mt-4">
           <button onClick={save} className="px-5 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700">{editing ? '保存修改' : '创建文章'}</button>

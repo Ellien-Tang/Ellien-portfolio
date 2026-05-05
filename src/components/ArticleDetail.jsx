@@ -110,6 +110,16 @@ export default function ArticleDetail() {
               blockquote({ children }) {
                 return <blockquote className="pl-4 border-l-4 border-accent bg-accent/5 py-3 pr-4 rounded-r-lg my-6 text-secondary italic">{children}</blockquote>
               },
+              img({ src, alt }) {
+                return (
+                  <img
+                    src={src}
+                    alt={alt}
+                    className="rounded-xl my-6 max-w-full shadow-sm border border-gray-100"
+                    loading="lazy"
+                  />
+                )
+              },
               ul({ children }) {
                 return <ul className="space-y-2 my-4 ml-4">{children}</ul>
               },
