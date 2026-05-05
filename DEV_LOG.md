@@ -204,7 +204,7 @@ feat: add admin dashboard for managing projects and articles
 ### 阿里云镜像仓库
 
 - 仓库：`crpi-htlq24wphi9j4514.cn-hangzhou.personal.cr.aliyuncs.com/ellien-tang/ellien-portfolio`
-- 当前版本：`v1.0.3`
+- 当前版本：`v1.0.4`
 
 ---
 
@@ -216,6 +216,7 @@ feat: add admin dashboard for managing projects and articles
 | v1.0.1 | 修复容器内 dist 路径问题 |
 | v1.0.2 | 修复环境变量解析问题，自动补全 MongoDB 连接参数 |
 | v1.0.3 | 增加 Admin 管理后台（项目/文章增删改查） |
+| v1.0.4 | 增加图片粘贴/拖拽上传功能，Markdown 编辑器支持直接插入图片 |
 
 ---
 
