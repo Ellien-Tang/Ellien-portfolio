@@ -53,9 +53,11 @@ export default function Projects() {
         </motion.div>
 
         {/* 卡片网格 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex md:flex-row flex-col gap-8 md:overflow-x-auto overflow-visible pb-4 hide-scrollbar">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} index={index} {...project} />
+            <div key={project.id} className="md:min-w-[380px] md:w-[380px] w-full">
+              <ProjectCard index={index} {...project} />
+            </div>
           ))}
         </div>
       </div>
