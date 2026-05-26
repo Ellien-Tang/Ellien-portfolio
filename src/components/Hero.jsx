@@ -120,8 +120,8 @@ export default function Hero() {
           variants={itemVariants}
           className="text-lg text-secondary leading-relaxed mb-10 max-w-xl mx-auto"
         >
-          本科就读于安徽大学计算机科学专业，曾获安徽省数学建模二等奖。
-          熟悉 Vue / React 双栈开发，有低代码平台项目经验。
+          本科就读于安徽大学计算机科学与技术专业。
+          具备 Vue / React 全栈开发能力。有过低代码平台与知识库 Agent 系统的开发实践，
           正在系统学习前端工程化与性能优化，期待在实践中持续成长。
         </motion.p>
 

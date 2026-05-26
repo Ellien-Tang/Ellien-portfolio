@@ -116,7 +116,7 @@ export default function Navbar() {
         {/* Social Links */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://github.com/yourname"
+            href="https://github.com/Ellien-Tang"
             target="_blank"
             rel="noopener noreferrer"
             className="text-secondary hover:text-primary transition-colors"

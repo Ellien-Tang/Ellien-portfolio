@@ -13,7 +13,7 @@ export default function ProjectManager() {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState(null)
-  const [form, setForm] = useState({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', highlights: '' })
+  const [form, setForm] = useState({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', highlights: '', timeline: [] })
   const [uploadingField, setUploadingField] = useState(null)
   const [dragOverField, setDragOverField] = useState(null)
   const imageInputRef = useRef(null)
@@ -30,7 +30,7 @@ export default function ProjectManager() {
 
   const reset = () => {
     setEditing(null)
-    setForm({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', highlights: '' })
+    setForm({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', highlights: '', timeline: [] })
   }
 
   const edit = (item) => {
@@ -44,6 +44,14 @@ export default function ProjectManager() {
       techIcons: (item.techIcons || []).join(', '),
       github: item.github || '',
       highlights: (item.highlights || []).join('\n'),
+      timeline: (item.timeline || []).map(t => ({
+        phase: t.phase || '',
+        date: t.date || '',
+        title: t.title || '',
+        description: t.description || '',
+        image: t.image || '',
+        highlights: (t.highlights || []).join('\n'),
+      })),
     })
   }
 
@@ -57,6 +65,14 @@ export default function ProjectManager() {
       techIcons: form.techIcons.split(',').map(s => s.trim()).filter(Boolean),
       github: form.github,
       highlights: form.highlights.split('\n').map(s => s.trim()).filter(Boolean),
+      timeline: (form.timeline || []).map(t => ({
+        phase: t.phase,
+        date: t.date,
+        title: t.title,
+        description: t.description,
+        image: t.image,
+        highlights: (t.highlights || '').split('\n').map(s => s.trim()).filter(Boolean),
+      })),
     }
     if (editing) {
       await api(`/api/projects/${editing}`, { method: 'PUT', body: JSON.stringify(body) })
@@ -71,6 +87,38 @@ export default function ProjectManager() {
     if (!confirm('确定删除？')) return
     await api(`/api/projects/${id}`, { method: 'DELETE' })
     load()
+  }
+
+  const addTimelinePhase = () => {
+    setForm(prev => ({
+      ...prev,
+      timeline: [...(prev.timeline || []), { phase: '', date: '', title: '', description: '', image: '', highlights: '' }]
+    }))
+  }
+
+  const removeTimelinePhase = (idx) => {
+    setForm(prev => ({
+      ...prev,
+      timeline: (prev.timeline || []).filter((_, i) => i !== idx)
+    }))
+  }
+
+  const moveTimelinePhase = (idx, dir) => {
+    setForm(prev => {
+      const arr = [...(prev.timeline || [])]
+      const swap = idx + dir
+      if (swap < 0 || swap >= arr.length) return prev
+      ;[arr[idx], arr[swap]] = [arr[swap], arr[idx]]
+      return { ...prev, timeline: arr }
+    })
+  }
+
+  const updateTimelinePhase = (idx, field, value) => {
+    setForm(prev => {
+      const arr = [...(prev.timeline || [])]
+      arr[idx] = { ...arr[idx], [field]: value }
+      return { ...prev, timeline: arr }
+    })
   }
 
   const doUpload = useCallback(async (file, field) => {
@@ -138,6 +186,34 @@ export default function ProjectManager() {
           <input placeholder="技术图标，逗号分隔" value={form.techIcons} onChange={e => setForm({...form, techIcons: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <textarea placeholder="亮点，每行一个" value={form.highlights} onChange={e => setForm({...form, highlights: e.target.value})} rows={3} className="px-3 py-2 border rounded-lg text-sm md:col-span-2" />
         </div>
+
+        <div className="mt-6">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-semibold text-gray-700">开发进度</h3>
+            <button onClick={addTimelinePhase} className="px-3 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded">+ 添加阶段</button>
+          </div>
+          {(form.timeline || []).length === 0 && <p className="text-xs text-gray-400">暂无阶段</p>}
+          <div className="space-y-3">
+            {(form.timeline || []).map((t, idx) => (
+              <div key={idx} className="border rounded-lg p-3 bg-gray-50">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <input placeholder="阶段，如 Phase 1" value={t.phase} onChange={e => updateTimelinePhase(idx, 'phase', e.target.value)} className="px-3 py-2 border rounded-lg text-sm bg-white" />
+                  <input placeholder="日期，如 2024-01" value={t.date} onChange={e => updateTimelinePhase(idx, 'date', e.target.value)} className="px-3 py-2 border rounded-lg text-sm bg-white" />
+                  <input placeholder="标题" value={t.title} onChange={e => updateTimelinePhase(idx, 'title', e.target.value)} className="px-3 py-2 border rounded-lg text-sm bg-white md:col-span-2" />
+                  <textarea placeholder="描述" value={t.description} onChange={e => updateTimelinePhase(idx, 'description', e.target.value)} rows={2} className="px-3 py-2 border rounded-lg text-sm bg-white md:col-span-2" />
+                  <input placeholder="图片路径" value={t.image} onChange={e => updateTimelinePhase(idx, 'image', e.target.value)} className="px-3 py-2 border rounded-lg text-sm bg-white md:col-span-2" />
+                  <textarea placeholder="亮点，每行一个" value={t.highlights} onChange={e => updateTimelinePhase(idx, 'highlights', e.target.value)} rows={2} className="px-3 py-2 border rounded-lg text-sm bg-white md:col-span-2" />
+                </div>
+                <div className="flex gap-2 mt-2">
+                  <button onClick={() => moveTimelinePhase(idx, -1)} disabled={idx === 0} className="px-2 py-1 text-xs bg-white border rounded hover:bg-gray-100 disabled:opacity-40">上移</button>
+                  <button onClick={() => moveTimelinePhase(idx, 1)} disabled={idx === (form.timeline || []).length - 1} className="px-2 py-1 text-xs bg-white border rounded hover:bg-gray-100 disabled:opacity-40">下移</button>
+                  <button onClick={() => removeTimelinePhase(idx)} className="px-2 py-1 text-xs bg-white border rounded text-red-500 hover:bg-red-50 ml-auto">删除</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="flex gap-3 mt-4">
           <button onClick={save} className="px-5 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700">{editing ? '保存修改' : '创建项目'}</button>
           {editing && <button onClick={reset} className="px-5 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200">取消</button>}
