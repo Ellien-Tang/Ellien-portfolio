@@ -44,8 +44,8 @@ export default function ArticleDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b">
+    <div className="min-h-screen bg-surface">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl border-b-2 border-black">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
           <button onClick={handleBack} className="flex items-center gap-2 text-secondary hover:text-primary transition-colors">
             <ArrowLeft size={20} />
@@ -59,7 +59,7 @@ export default function ArticleDetail() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <div className="flex flex-wrap gap-2 mb-4">
             {article.tags?.map(tag => (
-              <span key={tag} className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">{tag}</span>
+              <span key={tag} className="px-3 py-1 rounded-full border-2 border-black text-primary text-xs font-medium">{tag}</span>
             ))}
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 leading-tight">{article.title}</h1>
@@ -89,11 +89,11 @@ export default function ArticleDetail() {
                     <pre className={className}><code className={className} {...props}>{children}</code></pre>
                   </div>
                 ) : (
-                  <code className="px-1.5 py-0.5 rounded bg-muted text-accent text-sm font-mono" {...props}>{children}</code>
+                  <code className="px-1.5 py-0.5 rounded border-2 border-black bg-muted text-primary text-sm font-mono" {...props}>{children}</code>
                 )
               },
               h2({ children }) {
-                return <h2 className="text-2xl font-bold text-primary mt-12 mb-4 pb-2 border-b border-muted">{children}</h2>
+                return <h2 className="text-2xl font-bold text-primary mt-12 mb-4 pb-2 border-b-2 border-black">{children}</h2>
               },
               h3({ children }) {
                 return <h3 className="text-xl font-bold text-primary mt-8 mb-3">{children}</h3>
@@ -102,20 +102,20 @@ export default function ArticleDetail() {
                 return <div className="overflow-x-auto my-6"><table className="w-full text-sm border-collapse">{children}</table></div>
               },
               th({ children }) {
-                return <th className="px-4 py-3 text-left font-semibold text-primary bg-muted border-b-2 border-muted">{children}</th>
+                return <th className="px-4 py-3 text-left font-semibold text-primary bg-muted border-b-2 border-black">{children}</th>
               },
               td({ children }) {
-                return <td className="px-4 py-3 text-secondary border-b border-muted/50">{children}</td>
+                return <td className="px-4 py-3 text-secondary border-b-2 border-black">{children}</td>
               },
               blockquote({ children }) {
-                return <blockquote className="pl-4 border-l-4 border-accent bg-accent/5 py-3 pr-4 rounded-r-lg my-6 text-secondary italic">{children}</blockquote>
+                return <blockquote className="pl-4 border-l-4 border-primary bg-muted/30 py-3 pr-4 rounded-r-lg my-6 text-secondary italic">{children}</blockquote>
               },
               img({ src, alt }) {
                 return (
                   <img
                     src={src}
                     alt={alt}
-                    className="rounded-xl my-6 max-w-full shadow-sm border border-gray-100"
+                    className="rounded-xl my-6 max-w-full border-2 border-black"
                     loading="lazy"
                   />
                 )
@@ -124,7 +124,7 @@ export default function ArticleDetail() {
                 return <ul className="space-y-2 my-4 ml-4">{children}</ul>
               },
               li({ children }) {
-                return <li className="flex items-start gap-2 text-secondary"><span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" /><span>{children}</span></li>
+                return <li className="flex items-start gap-2 text-secondary"><span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0" /><span>{children}</span></li>
               }
             }}
           >

@@ -71,7 +71,7 @@ export default function Navbar() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         scrolled
-          ? 'bg-white/70 backdrop-blur-xl shadow-sm border-b border-white/20'
+          ? 'bg-surface/70 backdrop-blur-xl border-b-2 border-black'
           : 'bg-transparent'
       )}
     >
@@ -81,7 +81,7 @@ export default function Navbar() {
           onClick={() => scrollToSection('#hero')}
           className="text-xl font-bold tracking-tight"
         >
-          Ellien<span className="text-accent">.</span>
+          Ellien<span className="text-primary">.</span>
         </button>
 
         {/* Desktop Nav */}
@@ -96,7 +96,7 @@ export default function Navbar() {
                 onClick={() => scrollToSection(item.href)}
                 className={cn(
                   'relative flex items-center gap-2 text-sm font-medium transition-colors cursor-pointer',
-                  isActive ? 'text-accent' : 'text-secondary hover:text-primary'
+                  isActive ? 'text-primary' : 'text-secondary hover:text-primary'
                 )}
               >
                 <Icon size={16} />
@@ -104,7 +104,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -151,7 +151,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/80 backdrop-blur-xl border-b"
+            className="md:hidden bg-surface/80 backdrop-blur-xl border-b-2 border-black"
           >
             <div className="px-6 py-4 space-y-3">
               {navItems.map((item) => (

@@ -19,7 +19,7 @@ export default function BlogMarquee() {
 
   if (loading) {
     return (
-      <section id="blog" className="py-24 px-6 bg-muted/30">
+      <section id="blog" className="py-24 px-6 bg-surface">
         <div className="max-w-6xl mx-auto text-center text-secondary">加载中...</div>
       </section>
     )
@@ -29,7 +29,7 @@ export default function BlogMarquee() {
   const secondHalf = articles.slice(Math.ceil(articles.length / 2))
 
   return (
-    <section id="blog" className="py-24 px-6 bg-muted/30 overflow-hidden">
+    <section id="blog" className="py-24 px-6 bg-surface overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ export default function BlogMarquee() {
         >
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-muted/50 text-sm font-medium text-secondary hover:text-accent hover:border-accent/30 hover:shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-black text-sm font-medium text-secondary hover:text-primary hover:border-black transition-all"
           >
             全部文章
             <ArrowRight size={16} />

@@ -17,7 +17,7 @@ export default function Projects() {
 
   if (loading) {
     return (
-      <section id="projects" className="py-24 px-6 bg-muted/30">
+      <section id="projects" className="py-24 px-6 bg-surface">
         <div className="max-w-6xl mx-auto text-center text-secondary">加载中...</div>
       </section>
     )
@@ -25,14 +25,14 @@ export default function Projects() {
 
   if (error) {
     return (
-      <section id="projects" className="py-24 px-6 bg-muted/30">
+      <section id="projects" className="py-24 px-6 bg-surface">
         <div className="max-w-6xl mx-auto text-center text-red-500">加载失败: {error}</div>
       </section>
     )
   }
 
   return (
-    <section id="projects" className="py-24 px-6 bg-muted/30">
+    <section id="projects" className="py-24 px-6 bg-surface">
       <div className="max-w-6xl mx-auto">
         {/* 标题 */}
         <motion.div

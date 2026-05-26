@@ -20,7 +20,7 @@ import TechIcon from './TechIcon'
         tiltMaxAngleY={15}
         scale={1.02}
         transitionSpeed={450}
-        className="bg-white p-5 rounded-2xl shadow-sm border border-muted/50 hover:shadow-xl hover:border-accent/20 transition-all duration-500 h-full"
+        className="bg-white p-5 rounded-2xl border-2 border-black hover:border-black transition-all duration-500 h-full"
       >
         <div className="h-full flex flex-col">
         {/* 图片区域 */}
@@ -82,7 +82,7 @@ import TechIcon from './TechIcon'
         <div className="mt-auto pt-4 border-t border-muted/50">
           <a
             href={`/projects/${id}`}
-            className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:gap-2 transition-all"
+            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:gap-2 transition-all"
           >
             Read More →
           </a>

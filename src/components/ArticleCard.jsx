@@ -7,10 +7,10 @@ export default function ArticleCard({ article }) {
     <Link to={`/blog/${article.id}`}>
       <motion.div
         whileHover={{ y: -4 }}
-        className="w-[320px] p-5 rounded-2xl bg-white border border-muted/50 shadow-sm hover:shadow-lg hover:border-accent/20 transition-all duration-300 cursor-pointer group"
+        className="w-[320px] p-5 rounded-2xl bg-white border-2 border-black hover:border-black transition-all duration-300 cursor-pointer group"
       >
         {/* 标题 */}
-        <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-accent transition-colors line-clamp-1">
+        <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-primary transition-colors line-clamp-1">
           {article.title}
         </h3>
         
@@ -25,7 +25,7 @@ export default function ArticleCard({ article }) {
             <Clock size={12} />
             <span>{article.readTime}</span>
           </div>
-          <div className="flex items-center gap-1 text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
             <span>阅读</span>
             <ArrowRight size={12} />
           </div>

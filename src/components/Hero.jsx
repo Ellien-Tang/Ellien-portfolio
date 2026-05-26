@@ -78,7 +78,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* 背景装饰 -  subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-muted opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-br from-surface via-surface to-muted opacity-50" />
       
       {/* 内容容器 */}
       <motion.div
@@ -100,7 +100,7 @@ export default function Hero() {
           className="text-5xl md:text-7xl font-bold tracking-tight mb-6"
         >
           <span className="text-primary">Ellien</span>
-          <span className="text-accent">.</span>
+          <span className="text-primary">.</span>
         </motion.h1>
 
         {/* 副标题 / 打字机效果 */}
@@ -138,7 +138,7 @@ export default function Hero() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-3 rounded-xl bg-muted text-secondary transition-all duration-300 ${link.color} hover:bg-white hover:shadow-lg`}
+                className="p-3 rounded-xl bg-muted text-secondary transition-all duration-300 hover:bg-white hover:shadow-lg"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 title={link.name}
@@ -153,7 +153,7 @@ export default function Hero() {
         <motion.div variants={itemVariants}>
           <motion.button
             onClick={scrollToProjects}
-            className="px-8 py-3 rounded-full bg-accent text-white font-medium shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 transition-shadow"
+            className="px-8 py-3 rounded-full rounded-full bg-accent text-white font-medium shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 transition-shadow"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -220,7 +220,7 @@ function TypewriterText({ texts }) {
     <div className="h-8">
       <span className="text-xl md:text-2xl text-secondary font-medium">
         {currentText}
-        <span className="inline-block w-0.5 h-6 bg-accent ml-1 animate-pulse" />
+        <span className="inline-block w-0.5 h-6 bg-primary ml-1 animate-pulse" />
       </span>
     </div>
   )
