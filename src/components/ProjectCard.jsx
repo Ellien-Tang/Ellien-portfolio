@@ -19,10 +19,11 @@ import TechIcon from './TechIcon'
         tiltMaxAngleY={15}
         scale={1.02}
         transitionSpeed={450}
-        className="bg-white p-5 rounded-2xl shadow-sm border border-muted/50 hover:shadow-xl hover:border-accent/20 transition-all duration-500"
+        className="bg-white p-5 rounded-2xl shadow-sm border border-muted/50 hover:shadow-xl hover:border-accent/20 transition-all duration-500 h-full"
       >
+        <div className="h-full flex flex-col">
         {/* 图片区域 */}
-        <div className="relative w-full h-[230px] group rounded-2xl overflow-hidden bg-muted">
+        <div className="relative w-full h-[230px] group rounded-2xl overflow-hidden bg-muted flex-shrink-0">
           <div className="w-full h-full flex items-center justify-center">
             <span className="text-secondary text-sm font-medium">{name}</span>
           </div>
@@ -53,7 +54,7 @@ import TechIcon from './TechIcon'
         </div>
 
         {/* 内容区域 */}
-        <div className="mt-5">
+        <div className="mt-5 flex-1">
           <h3 className="text-primary font-bold text-xl">{name}</h3>
           <p className="mt-2 text-secondary text-sm leading-relaxed line-clamp-2">
             {description}
@@ -77,13 +78,14 @@ import TechIcon from './TechIcon'
         </div>
 
         {/* Read More */}
-        <div className="mt-4 pt-4 border-t border-muted/50">
+        <div className="mt-auto pt-4 border-t border-muted/50">
           <a
             href={`/projects/${id}`}
             className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:gap-2 transition-all"
           >
             Read More →
           </a>
+        </div>
         </div>
       </Tilt>
     </motion.div>
