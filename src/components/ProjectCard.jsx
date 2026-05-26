@@ -13,6 +13,7 @@ import TechIcon from './TechIcon'
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
     >
       <Tilt
         tiltMaxAngleX={15}
