@@ -5,7 +5,7 @@ import BlogMarquee from './BlogMarquee'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <main>
         <section id="hero"><Hero /></section>

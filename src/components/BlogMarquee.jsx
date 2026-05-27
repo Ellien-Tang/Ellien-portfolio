@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { Pencil } from 'lucide-react'
 import { api } from '../services/api'
 import ArticleCard from './ArticleCard'
 import { Marquee } from "@/components/ui/marquee"
@@ -19,8 +19,8 @@ export default function BlogMarquee() {
 
   if (loading) {
     return (
-      <section id="blog" className="py-24 px-6 bg-surface">
-        <div className="max-w-6xl mx-auto text-center text-secondary">加载中...</div>
+      <section id="blog" className="py-24 px-4 bg-white">
+        <div className="max-w-[1440px] mx-auto text-center text-[#717171] text-xl">加载中...</div>
       </section>
     )
   }
@@ -29,21 +29,22 @@ export default function BlogMarquee() {
   const secondHalf = articles.slice(Math.ceil(articles.length / 2))
 
   return (
-    <section id="blog" className="py-24 px-6 bg-surface overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <section id="blog" className="py-16 md:py-24 px-4 bg-white overflow-hidden">
+      <div className="max-w-[1440px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
-            技术博客
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">文章与思考</h2>
-          <p className="text-secondary max-w-xl mx-auto">
-            记录学习过程中的关键知识点与踩坑经验
-          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-[64px] font-bold leading-tight">文章与思考</h2>
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 border-[3px] border-black rounded-xl px-6 py-5 hover:bg-gray-50 bg-white font-semibold text-base md:text-lg w-full sm:w-auto"
+          >
+            <Pencil className="w-5 h-5" />
+            浏览全部文章
+          </Link>
         </motion.div>
 
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
@@ -60,21 +61,6 @@ export default function BlogMarquee() {
           <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
           <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="flex justify-end mt-8"
-        >
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-black text-sm font-medium text-secondary hover:text-primary hover:border-black transition-all"
-          >
-            全部文章
-            <ArrowRight size={16} />
-          </Link>
-        </motion.div>
       </div>
     </section>
   )
