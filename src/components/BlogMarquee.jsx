@@ -40,7 +40,7 @@ export default function BlogMarquee() {
           <h2 className="text-4xl md:text-5xl lg:text-[64px] font-bold leading-tight">文章与思考</h2>
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 border-[3px] border-black rounded-xl px-6 py-5 hover:bg-gray-50 bg-white font-semibold text-base md:text-lg w-full sm:w-auto"
+            className="inline-flex items-center gap-2 border-[3px] border-black rounded-xl px-6 py-5 hover:bg-black hover:text-white bg-white font-semibold text-base md:text-lg w-full sm:w-auto transition-colors"
           >
             <Pencil className="w-5 h-5" />
             浏览全部文章

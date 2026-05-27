@@ -1,5 +1,6 @@
 import Navbar from './NavBar'
 import Hero from './Hero'
+import TechStackMarquee from './TechStackMarquee'
 import Projects from './Projects'
 import BlogMarquee from './BlogMarquee'
 
@@ -9,6 +10,7 @@ export default function Home() {
       <Navbar />
       <main>
         <section id="hero"><Hero /></section>
+        <TechStackMarquee />
         <section id="projects"><Projects /></section>
         <section id="blog"><BlogMarquee /></section>
       </main>
