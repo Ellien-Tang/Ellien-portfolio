@@ -11,9 +11,9 @@ export default function Hero() {
       <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-16 items-center">
         {/* 左侧文字 */}
         <div className="space-y-8">
-          <h1 className="text-[56px] leading-[64px] md:text-[88px] font-bold md:leading-[100px]">
-            我是 <span className="bg-[#FF6B7A] text-white px-3 py-1 inline-block">Ellien</span>，一名来自{" "}
-            <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">安徽大学</span> 的前端开发者
+          <h1 className="text-[32px] leading-[64px] md:text-[88px] font-bold md:leading-[1.375]">
+            我是 <span className="bg-[#FF6B7A] text-white px-3 py-1 inline-block">Ellien</span>，<br/>一名来自安徽大学的{" "}
+            <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">前端开发者</span> 
           </h1>
 
           <p className="text-[#393939] text-[18px] md:text-[20px] font-medium leading-[30px] md:leading-[34px] max-w-xl">
@@ -41,7 +41,7 @@ export default function Hero() {
 
         {/* 右侧图片卡片 */}
         <div className="flex justify-center md:justify-end">
-          <div className="relative w-full max-w-lg aspect-square bg-[#FDB927] border-[3px] border-black rounded-[32px] overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <div className="relative w-full w-[520px] aspect-square bg-[#FDB927] border-[3px] border-black rounded-[32px] overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
             <img
               src="/images/hero-portrait.png"
               alt="个人肖像"
