@@ -10,10 +10,8 @@ export default function Home() {
       <Navbar />
       <main>
         <section id="hero"><Hero /></section>
-        <div className="relative z-[9999]">
-          <TechStackMarquee />
-        </div>
-        <section id="projects" className="relative"><Projects /></section>
+        <TechStackMarquee />
+        <section id="projects" className="pt-24"><Projects /></section>
         <section id="blog"><BlogMarquee /></section>
       </main>
     </div>
