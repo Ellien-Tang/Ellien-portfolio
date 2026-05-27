@@ -27,8 +27,8 @@ export default function TechStackMarquee() {
   const items = [...techs, ...techs, ...techs, ...techs]
 
   return (
-    <div className="overflow-hidden">
-      <div className="relative overflow-hidden bg-black py-16 -rotate-[5deg] mt-32 mb-16 min-w-[120vw] -mx-[10vw] left-0">
+    <div className="relative">
+      <div className="relative bg-black py-16 -rotate-[5deg] mt-32 mb-16 min-w-[120vw] -mx-[10vw] left-0 z-[9999]">
         <div className="flex items-center gap-16 animate-marquee whitespace-nowrap [--duration:30s] [--gap:4rem]">
           {items.map((tech, index) => (
             <div key={index} className="flex items-center gap-3 shrink-0">
