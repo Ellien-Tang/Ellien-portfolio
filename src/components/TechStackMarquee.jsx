@@ -29,11 +29,11 @@ export default function TechStackMarquee() {
   return (
     <div className="overflow-hidden">
       <div className="relative overflow-hidden bg-black py-14 -rotate-[5deg] mt-24 mb-12 min-w-[120vw] -mx-[10vw] left-0">
-        <div className="flex items-center gap-20 animate-marquee whitespace-nowrap [--duration:30s] [--gap:5rem]">
+        <div className="flex items-center gap-24 animate-marquee whitespace-nowrap [--duration:30s] [--gap:6rem]">
           {items.map((tech, index) => (
-            <div key={index} className="flex items-center gap-3 shrink-0">
-              <TechIcon name={tech} size={32} iconClassName="text-white" />
-              <span className="text-white text-lg font-bold whitespace-nowrap">{tech.charAt(0).toUpperCase() + tech.slice(1)}</span>
+            <div key={index} className="flex items-center gap-4 shrink-0">
+              <TechIcon name={tech} size={48} iconClassName="text-white" />
+              <span className="text-white text-2xl font-bold whitespace-nowrap">{tech.charAt(0).toUpperCase() + tech.slice(1)}</span>
             </div>
           ))}
         </div>

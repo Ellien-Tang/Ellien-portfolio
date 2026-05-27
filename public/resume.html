@@ -26,135 +26,163 @@
         margin: 0 auto;
         padding: 18mm 20mm;
         font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-        font-size: 9.5pt;
-        line-height: 1.55;
-        color: #333;
+        font-size: 10pt;
+        line-height: 1.65;
+        color: #0a0a0a;
+        background: #ffffff;
+      }
+
+      a {
+        color: #0a0a0a;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
       }
 
       /* 头部信息 */
       .header {
-        margin-bottom: 22px;
-        padding-bottom: 12px;
-        /* border-bottom: 1.5px solid #3498db; */
+        margin-bottom: 28px;
+        padding-bottom: 16px;
+        border-bottom: 3px solid #0a0a0a;
       }
 
       .header-row {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 6px;
+        margin-bottom: 10px;
       }
       .connect {
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 24px;
+        flex-wrap: wrap;
       }
 
       .name {
-        font-size: 20pt;
-        font-weight: 700;
-        color: #2c3e50;
+        font-size: 22pt;
+        font-weight: 800;
+        color: #0a0a0a;
+        letter-spacing: -0.5px;
       }
 
-      .contact {
+      .contact-item {
         font-size: 9.5pt;
-        color: #555;
+        color: #393939;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
       }
 
       /* 区块标题 */
       .section {
-        margin-bottom: 22px;
+        margin-bottom: 28px;
       }
 
       .section-title {
-        font-size: 11pt;
-        font-weight: 700;
-        color: #2c3e50;
-        border-bottom: 1.5px solid #3498db;
-        padding-bottom: 5px;
+        font-size: 13pt;
+        font-weight: 800;
+        color: #0a0a0a;
+        border-bottom: 3px solid #0a0a0a;
+        padding-bottom: 6px;
         margin-bottom: 14px;
+        margin-top: 24px;
       }
 
-      /* 教育背景 - space-between 布局 */
+      /* 教育背景 */
       .edu-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 6px;
-        font-size: 9.5pt;
-        color: #444;
+        margin-bottom: 8px;
+        font-size: 10pt;
+        color: #393939;
       }
 
       .edu-label {
-        font-weight: 600;
-        color: #2c3e50;
+        font-weight: 700;
+        color: #0a0a0a;
       }
 
+      /* 项目标题行 */
       .project-header {
         display: flex;
         justify-content: space-between;
+        align-items: baseline;
         margin-bottom: 10px;
+        flex-wrap: wrap;
+        gap: 4px 16px;
       }
       .project-title {
-        font-size: 10.5pt;
-        font-weight: 700;
-        color: #2c3e50;
-        margin-bottom: 6px;
+        font-size: 11pt;
+        font-weight: 800;
+        color: #0a0a0a;
       }
 
-      /* ==================== 掘金风格引用块 ==================== */
+      /* 项目描述块 — 文章主题风格引用块 */
       .juejin-block {
-        background: #f7f8fa; /* 浅灰背景 */
-        border-left: 4px solid #8ec5fc; /* 左侧蓝色竖线 */
-        padding: 12px 14px 12px 28px;
-        margin-bottom: 16px;
-        border-radius: 0 6px 6px 0; /* 右侧圆角 */
+        background: #f5f5f5;
+        border-left: 4px solid #0a0a0a;
+        padding: 14px 16px 14px 28px;
+        margin-bottom: 18px;
+        border-radius: 0 8px 8px 0;
       }
 
       .juejin-block .project-title {
-        font-size: 10.5pt;
-        font-weight: 700;
-        color: #2c3e50;
-        margin-bottom: 6px;
+        font-size: 11pt;
+        font-weight: 800;
+        color: #0a0a0a;
+        margin-bottom: 8px;
       }
 
       .juejin-block .project-desc {
-        font-size: 9pt;
-        color: #666;
-        margin-bottom: 8px;
-        line-height: 1.5;
+        font-size: 9.5pt;
+        color: #393939;
+        margin-bottom: 10px;
+        line-height: 1.6;
       }
 
       .juejin-block .tech-stack {
+        display: inline-block;
         font-size: 9pt;
-        color: #1e80ff; /* 蓝色技术栈 */
-        font-weight: 600;
-        margin-bottom: 8px;
+        color: #0a0a0a;
+        font-weight: 700;
         font-family: "SF Mono", Monaco, monospace;
+        background: #ffffff;
+        border: 2px solid #0a0a0a;
+        border-radius: 6px;
+        padding: 3px 10px;
+        margin-bottom: 10px;
       }
 
-      /* 列表缩进 */
-      .juejin-block > ul {
+      /* 列表 */
+      .juejin-block > ul,
+      .skill-list {
         margin-left: 0;
         padding-left: 0;
         list-style: none;
       }
 
-      .juejin-block > ul > li {
+      .juejin-block > ul > li,
+      .skill-list > div {
         position: relative;
-        padding-left: 14px;
-        margin-bottom: 5px;
-        line-height: 1.55;
-        color: #444;
+        padding-left: 16px;
+        margin-bottom: 6px;
+        line-height: 1.6;
+        color: #393939;
       }
 
-      /* 一级圆点 */
-      .juejin-block > ul > li::before {
-        content: "•";
+      .juejin-block > ul > li::before,
+      .skill-list > div::before {
+        content: "";
         position: absolute;
         left: 0;
-        color: #1e80ff;
-        font-weight: bold;
+        top: 9px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #0a0a0a;
       }
 
       /* 二级缩进 */
@@ -168,13 +196,12 @@
 
       .juejin-block > ul > li > ul > li {
         position: relative;
-        padding-left: 12px;
+        padding-left: 14px;
         margin-bottom: 3px;
         font-size: 9pt;
         color: #555;
       }
 
-      /* 二级空心圆 */
       .juejin-block > ul > li > ul > li::before {
         content: "◦";
         position: absolute;
@@ -182,34 +209,13 @@
         color: #999;
       }
 
-      /* 专业技能 */
-      .skill-list {
-        font-size: 9.5pt;
-        color: #444;
-        line-height: 1.9;
-      }
-
-      .skill-list > div {
-        position: relative;
-        padding-left: 14px;
-        margin-bottom: 5px;
-      }
-
-      .skill-list > div::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: #3498db;
-        font-weight: bold;
-      }
-
       /* 其他 */
       .footer {
-        margin-top: 24px;
-        padding-top: 12px;
-        border-top: 1px solid #ecf0f1;
+        margin-top: 28px;
+        padding-top: 14px;
+        border-top: 3px solid #0a0a0a;
         font-size: 9.5pt;
-        color: #555;
+        color: #393939;
       }
 
       .download-btn {
@@ -223,7 +229,7 @@
         padding: 12px 24px;
         border-radius: 12px;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
         cursor: pointer;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         transition: transform 0.2s, box-shadow 0.2s;
@@ -236,9 +242,11 @@
       @media print {
         body {
           padding: 0;
+          background: #ffffff;
+          color: #0a0a0a;
         }
         .juejin-block {
-          background: #f7f8fa !important;
+          background: #f5f5f5 !important;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
@@ -248,43 +256,34 @@
       }
     </style>
     <base target="_blank" />
-  <base target="_blank">
-</head>
+  </head>
   <body>
     <button class="download-btn" onclick="window.print()">
       <i class="ri-download-line"></i> 下载 PDF
     </button>
+
     <!-- 基本信息 -->
     <div class="header">
       <div class="header-row">
         <span class="name">唐爱莲</span>
-        <span class="name">-前端开发</span>
+        <span class="name" style="margin-left:8px;">- 前端开发</span>
       </div>
       <div class="connect">
-        <!-- <span class="contact">tel:173-7504-8265</span> -->
-        <!-- <span class="contact">email:1143271551@qq.com</span>
-        <span class="contact">wexin:uforia_13</span> -->
         <span class="contact-item">
           <i class="ri-phone-line"></i>
           173-7504-8265
         </span>
-
-        <!-- 邮箱 -->
         <span class="contact-item">
           <i class="ri-mail-line"></i>
           1143271551@qq.com
         </span>
-
-        <!-- 微信 -->
         <span class="contact-item">
           <i class="ri-wechat-line"></i>
           uforia_13
         </span>
-
-        <!-- GitHub -->
         <span class="contact-item">
           <i class="ri-github-line"></i>
-          <a href="https://github.com/Ellien-Tang" style="color: #555; text-decoration: none;">Ellien-Tang</a>
+          <a href="https://github.com/Ellien-Tang">Ellien-Tang</a>
         </span>
       </div>
     </div>
@@ -297,28 +296,26 @@
         <span class="edu-label">计算机科学与技术</span>
         <span class="edu-label">2023.08 - 2027.06</span>
       </div>
-      <div>
-        <span>CET6: 548|</span>
-        <span>大英赛三等奖|</span>
-        <span>安徽省数学建模二等奖|</span>
-        <span>三等奖学金|</span>
-        <span>gpa:86.8/100</span>
+      <div style="font-size: 9.5pt; color: #393939;">
+        <span>CET6: 548 |</span>
+        <span>大英赛三等奖 |</span>
+        <span>安徽省数学建模二等奖 |</span>
+        <span>三等奖学金 |</span>
+        <span>gpa: 86.8/100</span>
       </div>
-      <div class="edu-row"></div>
     </div>
 
     <!-- 项目经历 -->
     <div class="section">
       <div class="section-title">项目经历</div>
 
-      <!-- 项目一：掘金风格高亮块 -->
+      <!-- 项目一 -->
       <div class="project-header">
         <span class="project-title">多模态 Agent 智能对话平台</span>
-        <span class="project-title"><a href="https://vnfrjpjgyyfk.sealoshzh.site" style="color: #3498db; text-decoration: none;">https://vnfrjpjgyyfk.sealoshzh.site</a></span>
+        <span class="project-title"><a href="https://vnfrjpjgyyfk.sealoshzh.site">https://vnfrjpjgyyfk.sealoshzh.site</a></span>
         <span class="project-title">2026.02</span>
       </div>
       <div class="juejin-block">
-        
         <div class="project-desc">
           项目概述：面向大模型对话与 Agent 场景，构建支持流式响应、多轮上下文管理、检索增强生成（<strong>RAG</strong>）与工具调用能力的 Web 端对话系统，解决复杂内容生成、外部能力集成与长会话性能优化问题。
         </div>
@@ -331,31 +328,28 @@
             接入<strong>向量检索</strong>驱动的 <strong>RAG</strong> 机制，支持文档分块、<strong>Embedding</strong> 建索引与相似度召回，并在 UI 层实现引用来源标识与结果渲染，提升复杂问答场景下的准确性与可解释性
           </li>
           <li>
-            基于 <strong>Function Calling</strong> 构建智能体工具调用链路，打通模型决策、工具执行（<strong>MCP</strong>）与结果回填流程，并在前端实现状态可视化，提升对话系统的任务执行能力与可解释性。
+            基于 <strong>Function Calling</strong> 构建智能体工具调用链路，打通模型决策、工具执行（<strong>MCP</strong>）与结果回填流程，并在前端实现状态可视化，提升对话系统的任务执行能力与可解释性
           </li>
           <li>
             封装基于 <strong>Web Speech API</strong> 的语音输入能力，抽象 idle / recording / processing 三态状态机，并将识别结果无缝接入对话发送流程
           </li>
           <li>
             通过 <strong>defineAsyncComponent</strong> 实现核心组件懒加载，结合 Vite 构建分包优化首屏加载性能，引入 <strong>vue-virtual-scroller</strong> 优化长对话场景，在高消息量下有效降低 DOM 渲染与内存开销
-          
+          </li>
         </ul>
       </div>
 
-      <!-- 项目二：掘金风格高亮块 -->
-   
+      <!-- 项目二 -->
       <div class="project-header">
         <span class="project-title">营销页面搭建平台 – 前端开发</span>
-        <span class="project-title"><a href="https://stygehujmdvv.sealoshzh.site" style="color: #3498db; text-decoration: none;">https://stygehujmdvv.sealoshzh.site</a></span>
+        <span class="project-title"><a href="https://stygehujmdvv.sealoshzh.site">https://stygehujmdvv.sealoshzh.site</a></span>
         <span class="project-title">2026.03</span>
       </div>
-     
       <div class="juejin-block">
         <div class="project-desc">
           项目概述：面向运营与增长场景的低代码营销页面搭建平台，支持页面可视化编辑、组件拖拽编排与一键发布能力，提升营销活动的搭建效率与效果。
         </div>
-        <div class="tech-stack">技术栈：React + TypeScript + <strong>Redux</strong> + React Router + Ant Design + <strong>dnd-kit</strong> + <strong>ahooks</strong> 
-        </div>
+        <div class="tech-stack">技术栈：React + TypeScript + Redux + React Router + Ant Design + dnd-kit + ahooks</div>
         <ul>
           <li>
             调研主流低代码平台并抽象核心能力，设计营销场景下的页面物料体系（Banner / 表单 / 活动模块等），制定组件协议与数据 Schema，支撑动态渲染与跨页面复用
@@ -369,8 +363,6 @@
           <li>
             基于 <strong>ahooks</strong> 与<strong>自定义 Hook</strong> 封装编辑器核心逻辑（如拖拽态管理、选区同步、快捷键系统），提升复杂交互场景下的代码复用性与可维护性
           </li>
-        
-          
         </ul>
       </div>
     </div>
@@ -398,9 +390,12 @@
 
     <!-- 其他 -->
     <div class="section">
-        <div class="section-title"></div>
-      <div style="font-size: 9.5pt; color: #555;">实习时间：4个月以上，全国可飞，随时到岗</div>
-      <div style="font-size: 9.5pt; color: #555;">更多项目、笔记等相关信息以及下载最新简历：<a href="https://ukrpagynzekp.sealoshzh.site/" style="color: #3498db; text-decoration: none;">https://ukrpagynzekp.sealoshzh.site/</a></div>
+      <div class="section-title"></div>
+      <div style="font-size: 9.5pt; color: #393939;">实习时间：4个月以上，全国可飞，随时到岗</div>
+      <div style="font-size: 9.5pt; color: #393939; margin-top: 6px;">
+        更多项目、笔记等相关信息以及下载最新简历：
+        <a href="https://ukrpagynzekp.sealoshzh.site/">https://ukrpagynzekp.sealoshzh.site/</a>
+      </div>
     </div>
   </body>
 </html>
