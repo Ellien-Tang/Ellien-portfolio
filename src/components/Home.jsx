@@ -11,7 +11,7 @@ export default function Home() {
       <main>
         <section id="hero"><Hero /></section>
         <TechStackMarquee />
-        <section id="projects" className="pt-24"><Projects /></section>
+        <section id="projects"><Projects /></section>
         <section id="blog"><BlogMarquee /></section>
       </main>
     </div>
