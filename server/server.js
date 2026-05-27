@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url'
 import projectRoutes from './routes/projects.js'
 import articleRoutes from './routes/articles.js'
 import uploadRoutes from './routes/upload.js'
+import resumeRoutes from './routes/resume.js'
 
 dotenv.config()
 
@@ -25,6 +26,7 @@ app.use(express.json())
 app.use('/api/projects', projectRoutes)
 app.use('/api/articles', articleRoutes)
 app.use('/api/upload', uploadRoutes)
+app.use('/api/resume', resumeRoutes)
 
 // Health check
 app.get('/api/health', (req, res) => {

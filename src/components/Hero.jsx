@@ -5,13 +5,13 @@ import { Mail, FileText } from 'lucide-react'
 export default function Hero() {
   return (
     <section className="container mx-auto px-4 py-16 md:py-24">
-      <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-16">
+      <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-16 items-center">
         {/* 左侧文字 */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="space-y-8 h-full flex flex-col justify-center"
+          className="space-y-8"
         >
           <h1 className="text-[32px] leading-[64px] md:text-[88px] font-bold md:leading-[1.375]">
             我是 <span className="bg-[#FF6B7A] text-white px-3 py-1 inline-block">Ellien</span>，<br/>一名来自安徽大学的{" "}
@@ -44,21 +44,21 @@ export default function Hero() {
         </motion.div>
 
         {/* 右侧图片卡片 */}
-        <div className="flex justify-center md:justify-end items-center h-full">
+        <div className="flex justify-center md:justify-end">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="h-full w-full max-w-[520px]"
+            className="w-full max-w-[520px]"
           >
             <Tilt
               tiltMaxAngleX={15}
               tiltMaxAngleY={15}
               scale={1.02}
               transitionSpeed={450}
-              className="h-full w-full"
+              className="w-full aspect-square"
             >
-              <div className="h-full w-full bg-[#FDB927] border-[3px] border-black rounded-[32px] overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+              <div className="w-full h-full bg-[#FDB927] border-[3px] border-black rounded-[32px] overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
                 <img
                   src="/images/hero-portrait.png"
                   alt="个人肖像"

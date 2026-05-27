@@ -207,7 +207,7 @@
       .footer {
         margin-top: 28px;
         padding-top: 14px;
-        border-top: 1.5px solid #0a0a0a;
+        border-top: 3px solid #0a0a0a;
         font-size: 9.5pt;
         color: #393939;
       }
