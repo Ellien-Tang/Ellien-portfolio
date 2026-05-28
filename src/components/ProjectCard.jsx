@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import TechIcon from './TechIcon'
 
-export default function ProjectCard({ index, id, name, description, github, link, image, techIcons }) {
+export default function ProjectCard({ index, id, title, description, github, link, image, techIcons }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -23,10 +23,10 @@ export default function ProjectCard({ index, id, name, description, github, link
           {/* 图片区域 */}
           <div className="relative w-full h-[240px] group rounded-2xl overflow-hidden bg-[#EDEDED] flex-shrink-0 border-2 border-black">
             {image ? (
-              <img src={image} alt={name} className="w-full h-full object-cover" />
+              <img src={image} alt={title} className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <span className="text-black text-base font-bold">{name}</span>
+                <span className="text-black text-base font-bold">{title}</span>
               </div>
             )}
 
@@ -59,7 +59,7 @@ export default function ProjectCard({ index, id, name, description, github, link
 
           {/* 内容区域 */}
           <div className="mt-6 flex-1">
-            <h3 className="text-black font-bold text-2xl">{name}</h3>
+            <h3 className="text-black font-bold text-2xl">{title}</h3>
             <p className="mt-3 text-[#393939] text-base leading-relaxed line-clamp-2">
               {description}
             </p>
