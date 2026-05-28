@@ -21,7 +21,7 @@ export default function ProjectCard({ index, id, name, description, source_code_
       >
         <div className="h-full flex flex-col">
           {/* 图片区域 */}
-          <div className="relative w-full h-[280px] group rounded-2xl overflow-hidden bg-[#EDEDED] flex-shrink-0 border-2 border-black">
+          <div className="relative w-full h-[240px] group rounded-2xl overflow-hidden bg-[#EDEDED] flex-shrink-0 border-2 border-black">
             <div className="w-full h-full flex items-center justify-center">
               <span className="text-black text-base font-bold">{name}</span>
             </div>

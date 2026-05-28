@@ -13,7 +13,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="space-y-8"
         >
-          <h1 className="text-[32px] leading-[64px] md:text-[88px] font-bold md:leading-[1.375]">
+          <h1 className="text-[32px] leading-[64px] md:text-[80px] font-bold md:leading-[1.35]">
             我是 <span className="bg-[#FF6B7A] text-white px-3 py-1 inline-block">Ellien</span>，<br/>一名来自安徽大学的{" "}
             <span className="bg-[#2F81F7] text-white px-3 py-1 inline-block">前端开发者</span>
           </h1>

@@ -50,7 +50,7 @@ export default function Projects() {
         {/* 卡片网格 */}
         <div className="flex md:flex-row flex-col gap-10 md:overflow-x-auto overflow-visible pb-4 hide-scrollbar">
           {projects.map((project, index) => (
-            <div key={project.id} className="md:min-w-[520px] md:w-[520px] w-full">
+            <div key={project.id} className="md:min-w-[440px] md:w-[440px] w-full">
               <ProjectCard index={index} {...project} />
             </div>
           ))}

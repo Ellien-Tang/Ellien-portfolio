@@ -7,15 +7,15 @@ export default function ArticleCard({ article }) {
     <Link to={`/blog/${article.id}`}>
       <motion.div
         whileHover={{ y: -4 }}
-        className="w-[380px] p-6 rounded-[24px] bg-white border-[3px] border-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 cursor-pointer group"
+        className="w-[340px] p-5 rounded-[24px] bg-white border-[3px] border-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 cursor-pointer group"
       >
         {/* 标题 */}
-        <h3 className="text-xl font-bold text-black mb-3 transition-colors line-clamp-1">
+        <h3 className="text-lg font-bold text-black mb-2 transition-colors line-clamp-1">
           {article.title}
         </h3>
 
         {/* 摘要 */}
-        <p className="text-base text-[#717171] leading-relaxed mb-5 line-clamp-2">
+        <p className="text-base text-[#717171] leading-relaxed mb-4 line-clamp-2">
           {article.summary}
         </p>
 

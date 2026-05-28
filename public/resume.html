@@ -24,34 +24,50 @@
         width: 210mm;
         min-height: 297mm;
         margin: 0 auto;
-        padding: 18mm 20mm;
-        font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        padding: 15mm 15mm;
+        /* font-family: "Times New Roman", "SimSun", "FangSong", serif; */
+        /* font-family:"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei Light", sans-serif; */
+        /* font-weight: 400; 更细！ */
         font-size: 10pt;
         line-height: 1.65;
-        color: #0a0a0a;
+        /* color: #0a0a0a; */
         background: #ffffff;
+
+        font-family: Georgia, "Times New Roman", "FangSong", "SimSun", serif;
+        font-weight: 400;
+        color: #000000; /* Claude 深灰文字 */
+        /* background: #f4f1ea; Claude 暖白背景 */
+      }
+
+      strong,
+      b {
+        font-weight: 600;
       }
 
       a {
-        color: #0a0a0a;
+        /* color: #0a0a0a; */
         text-decoration: none;
+        font-weight: 400;
+        color: inherit;
       }
+
       a:hover {
         text-decoration: underline;
       }
 
       /* 头部信息 */
       .header {
-        margin-bottom: 28px;
-        padding-bottom: 16px;
+        margin-bottom: 5px;
+        padding-bottom: 5px;
       }
 
       .header-row {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 2px;
       }
+
       .connect {
         display: flex;
         justify-content: center;
@@ -76,7 +92,7 @@
 
       /* 区块标题 */
       .section {
-        margin-bottom: 28px;
+        margin-bottom: 2px;
       }
 
       .section-title {
@@ -84,9 +100,9 @@
         font-weight: 800;
         color: #0a0a0a;
         border-bottom: 1.5px solid #0a0a0a;
-        padding-bottom: 6px;
-        margin-bottom: 14px;
-        margin-top: 24px;
+        padding-bottom: 0px;
+        margin-bottom: 5px;
+        margin-top: 5px;
       }
 
       /* 教育背景 */
@@ -94,9 +110,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 8px;
+        margin-bottom: 2px;
         font-size: 10pt;
-        color: #393939;
+        color: #000000;
       }
 
       .edu-label {
@@ -109,10 +125,11 @@
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         flex-wrap: wrap;
         gap: 4px 16px;
       }
+
       .project-title {
         font-size: 11pt;
         font-weight: 800;
@@ -122,9 +139,9 @@
       /* 项目描述块 — 文章主题风格引用块 */
       .juejin-block {
         background: #f5f5f5;
-        border-left: 4px solid #0a0a0a;
-        padding: 14px 16px 14px 28px;
-        margin-bottom: 18px;
+        border-left: 2px solid #0a0a0a;
+        padding: 7px 14px 7px 14px;
+        margin-bottom: 14px;
         border-radius: 0 8px 8px 0;
       }
 
@@ -137,38 +154,35 @@
 
       .juejin-block .project-desc {
         font-size: 9.5pt;
-        color: #393939;
+        color: #000000;
         margin-bottom: 10px;
         line-height: 1.6;
       }
 
       .juejin-block .tech-stack {
         font-size: 9pt;
-        color: #717171;
+        color: #393939;
         font-weight: 600;
         font-family: "SF Mono", Monaco, monospace;
         margin-bottom: 10px;
       }
 
       /* 列表 */
-      .juejin-block > ul,
-      .skill-list {
+      .juejin-block > ul {
         margin-left: 0;
         padding-left: 0;
         list-style: none;
       }
 
-      .juejin-block > ul > li,
-      .skill-list > div {
+      .juejin-block > ul > li {
         position: relative;
         padding-left: 16px;
         margin-bottom: 6px;
         line-height: 1.6;
-        color: #393939;
+        color: #000000;
       }
 
-      .juejin-block > ul > li::before,
-      .skill-list > div::before {
+      .juejin-block > ul > li::before {
         content: "";
         position: absolute;
         left: 0;
@@ -179,8 +193,28 @@
         background: #0a0a0a;
       }
 
+      .skill-list {
+        /* font-size: 9.5pt; */
+        color: #000000;
+        /* line-height: 1.9; */
+      }
+
+      .skill-list > div {
+        position: relative;
+        padding-left: 14px;
+        margin-bottom: 5px;
+      }
+
+      .skill-list > div::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #000000;
+        font-weight: bold;
+      }
+
       /* 二级缩进 */
-      .juejin-block > ul > li > ul {
+      /* .juejin-block > ul > li > ul {
         margin-top: 4px;
         margin-bottom: 4px;
         margin-left: 14px;
@@ -194,22 +228,22 @@
         margin-bottom: 3px;
         font-size: 9pt;
         color: #555;
-      }
+      } */
 
-      .juejin-block > ul > li > ul > li::before {
+      /* .juejin-block > ul > li > ul > li::before {
         content: "◦";
         position: absolute;
         left: 0;
         color: #999;
-      }
+      } */
 
       /* 其他 */
       .footer {
-        margin-top: 28px;
-        padding-top: 14px;
-        border-top: 1.5px solid #0a0a0a;
+        margin-top: 5px;
+        padding-top: 5px;
+        border-top: 0.5px solid #484848;
         font-size: 9.5pt;
-        color: #393939;
+        color: #000000;
       }
 
       .download-btn {
@@ -217,7 +251,7 @@
         top: 20px;
         right: 20px;
         z-index: 1000;
-        background: #0B0B0B;
+        background: #0b0b0b;
         color: #fff;
         border: none;
         padding: 12px 24px;
@@ -225,12 +259,15 @@
         font-size: 14px;
         font-weight: 700;
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
       }
+
       .download-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
       }
 
       .back-btn {
@@ -239,15 +276,17 @@
         left: 20px;
         z-index: 1000;
         background: #fff;
-        color: #0B0B0B;
-        border: 2px solid #0B0B0B;
+        color: #0b0b0b;
+        border: 2px solid #0b0b0b;
         padding: 12px 24px;
         border-radius: 12px;
         font-size: 14px;
         font-weight: 700;
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
@@ -255,14 +294,8 @@
       }
       .back-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         text-decoration: none;
-      }
-
-      @media print {
-        .back-btn {
-          display: none;
-        }
       }
 
       @media print {
@@ -271,20 +304,33 @@
           background: #ffffff;
           color: #0a0a0a;
         }
+
         .juejin-block {
           background: #f5f5f5 !important;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
+
         .download-btn {
+          display: none;
+        }
+        .back-btn {
           display: none;
         }
       }
     </style>
     <base target="_blank" />
   </head>
+
   <body>
-    <a href="/" class="back-btn" onclick="window.opener?.focus(); return true;">
+    <a
+      href="/"
+      class="back-btn"
+      onclick="
+        window.opener?.focus();
+        return true;
+      "
+    >
       <i class="ri-arrow-left-line"></i> 回到首页
     </a>
     <button class="download-btn" onclick="window.print()">
@@ -295,7 +341,7 @@
     <div class="header">
       <div class="header-row">
         <span class="name">唐爱莲</span>
-        <span class="name" style="margin-left:8px;">- 前端开发</span>
+        <span class="name" style="margin-left: 8px">- 前端开发</span>
       </div>
       <div class="connect">
         <span class="contact-item">
@@ -325,7 +371,7 @@
         <span class="edu-label">计算机科学与技术</span>
         <span class="edu-label">2023.08 - 2027.06</span>
       </div>
-      <div style="font-size: 9.5pt; color: #393939;">
+      <div style="font-size: 9.5pt; color: #000000">
         <span>CET6: 548 |</span>
         <span>大英赛三等奖 |</span>
         <span>安徽省数学建模二等奖 |</span>
@@ -341,29 +387,47 @@
       <!-- 项目一 -->
       <div class="project-header">
         <span class="project-title">多模态 Agent 智能对话平台</span>
-        <span class="project-title"><a href="https://vnfrjpjgyyfk.sealoshzh.site">https://vnfrjpjgyyfk.sealoshzh.site</a></span>
+        <span class="project-title"
+          ><a href="https://vnfrjpjgyyfk.sealoshzh.site"
+            >https://vnfrjpjgyyfk.sealoshzh.site</a
+          ></span
+        >
         <span class="project-title">2026.02</span>
       </div>
       <div class="juejin-block">
         <div class="project-desc">
-          项目概述：面向大模型对话与 Agent 场景，构建支持流式响应、多轮上下文管理、检索增强生成（<strong>RAG</strong>）与工具调用能力的 Web 端对话系统，解决复杂内容生成、外部能力集成与长会话性能优化问题。
+          项目概述：面向大模型对话与 Agent
+          场景，构建支持流式响应、多轮上下文管理、检索增强生成（<strong>RAG</strong>）与工具调用能力的
+          Web 端对话系统，解决复杂内容生成、外部能力集成与长会话性能优化问题。
         </div>
         <div class="tech-stack">技术栈：Vue3 + Vite + Pinia + Vue-Router</div>
         <ul>
           <li>
-            构建流式对话渲染能力，基于 <strong>ReadableStream + TextDecoder</strong> 解析 <strong>SSE</strong> 数据流，实现逐字流式输出，保障长文本生成场景下的交互连贯性
+            构建流式对话渲染能力，基于
+            <strong>ReadableStream + TextDecoder</strong> 解析
+            <strong>SSE</strong>
+            数据流，实现逐字流式输出，保障长文本生成场景下的交互连贯性
           </li>
           <li>
-            接入<strong>向量检索</strong>驱动的 <strong>RAG</strong> 机制，支持文档分块、<strong>Embedding</strong> 建索引与相似度召回，并在 UI 层实现引用来源标识与结果渲染，提升复杂问答场景下的准确性与可解释性
+            接入<strong>向量检索</strong>驱动的
+            <strong>RAG</strong> 机制，支持文档分块、<strong>Embedding</strong>
+            建索引与相似度召回，并在 UI
+            层实现引用来源标识与结果渲染，提升复杂问答场景下的准确性与可解释性
           </li>
           <li>
-            基于 <strong>Function Calling</strong> 构建智能体工具调用链路，打通模型决策、工具执行（<strong>MCP</strong>）与结果回填流程，并在前端实现状态可视化，提升对话系统的任务执行能力与可解释性
+            基于
+            <strong>Function Calling</strong>
+            构建智能体工具调用链路，打通模型决策、工具执行（<strong>MCP</strong>）与结果回填流程，并在前端实现状态可视化，提升对话系统的任务执行能力与可解释性
           </li>
           <li>
-            封装基于 <strong>Web Speech API</strong> 的语音输入能力，抽象 idle / recording / processing 三态状态机，并将识别结果无缝接入对话发送流程
+            封装基于 <strong>Web Speech API</strong> 的语音输入能力，抽象 idle /
+            recording / processing 三态状态机，并将识别结果无缝接入对话发送流程
           </li>
           <li>
-            通过 <strong>defineAsyncComponent</strong> 实现核心组件懒加载，结合 Vite 构建分包优化首屏加载性能，引入 <strong>vue-virtual-scroller</strong> 优化长对话场景，在高消息量下有效降低 DOM 渲染与内存开销
+            通过 <strong>defineAsyncComponent</strong> 实现核心组件懒加载，结合
+            Vite 构建分包优化首屏加载性能，引入
+            <strong>vue-virtual-scroller</strong>
+            优化长对话场景，在高消息量下有效降低 DOM 渲染与内存开销
           </li>
         </ul>
       </div>
@@ -371,26 +435,39 @@
       <!-- 项目二 -->
       <div class="project-header">
         <span class="project-title">营销页面搭建平台 – 前端开发</span>
-        <span class="project-title"><a href="https://stygehujmdvv.sealoshzh.site">https://stygehujmdvv.sealoshzh.site</a></span>
+        <span class="project-title"
+          ><a href="https://stygehujmdvv.sealoshzh.site"
+            >https://stygehujmdvv.sealoshzh.site</a
+          ></span
+        >
         <span class="project-title">2026.03</span>
       </div>
       <div class="juejin-block">
         <div class="project-desc">
           项目概述：面向运营与增长场景的低代码营销页面搭建平台，支持页面可视化编辑、组件拖拽编排与一键发布能力，提升营销活动的搭建效率与效果。
         </div>
-        <div class="tech-stack">技术栈：React + TypeScript + Redux + React Router + Ant Design + dnd-kit + ahooks</div>
+        <div class="tech-stack">
+          技术栈：React + TypeScript + Redux + React Router + Ant Design +
+          dnd-kit + ahooks
+        </div>
         <ul>
           <li>
-            调研主流低代码平台并抽象核心能力，设计营销场景下的页面物料体系（Banner / 表单 / 活动模块等），制定组件协议与数据 Schema，支撑动态渲染与跨页面复用
+            调研主流低代码平台并抽象核心能力，设计营销场景下的页面物料体系（Banner
+            / 表单 / 活动模块等），制定组件协议与数据
+            Schema，支撑动态渲染与跨页面复用
           </li>
           <li>
-            基于 <strong>Redux</strong> 构建画布状态管理体系，结合 <strong>dnd-kit</strong> 实现组件拖拽编排与层级管理，支持组件面板、属性配置与组件联动逻辑（如表单联动、展示条件控制）
+            基于 <strong>Redux</strong> 构建画布状态管理体系，结合
+            <strong>dnd-kit</strong>
+            实现组件拖拽编排与层级管理，支持组件面板、属性配置与组件联动逻辑（如表单联动、展示条件控制）
           </li>
           <li>
-            优化编辑器历史记录机制，基于操作流（<strong>Command Pattern</strong>）重构撤回 / 重做能力，支持连续操作合并与复杂编辑场景下的稳定回溯
+            优化编辑器历史记录机制，基于操作流（<strong>Command Pattern</strong
+            >）重构撤回 / 重做能力，支持连续操作合并与复杂编辑场景下的稳定回溯
           </li>
           <li>
-            基于 <strong>ahooks</strong> 与<strong>自定义 Hook</strong> 封装编辑器核心逻辑（如拖拽态管理、选区同步、快捷键系统），提升复杂交互场景下的代码复用性与可维护性
+            基于 <strong>ahooks</strong> 与<strong>自定义 Hook</strong>
+            封装编辑器核心逻辑（如拖拽态管理、选区同步、快捷键系统），提升复杂交互场景下的代码复用性与可维护性
           </li>
         </ul>
       </div>
@@ -410,7 +487,8 @@
           等组件库进行高效开发
         </div>
         <div>
-          熟悉 React + TypeScript 开发，熟练使用 Redux 等相关生态工具完成复杂交互场景开发
+          熟悉 React + TypeScript 开发，熟练使用 Redux
+          等相关生态工具完成复杂交互场景开发
         </div>
         <div>了解 HTTP/TCP 协议及常见状态码，具备基础网络知识</div>
         <div>掌握 Vite、Webpack 构建工具配置，熟悉 Git 版本管理流程</div>
@@ -418,12 +496,15 @@
     </div>
 
     <!-- 其他 -->
-    <div class="section">
-      <div class="section-title"></div>
-      <div style="font-size: 9.5pt; color: #393939;">实习时间：4个月以上，全国可飞，随时到岗</div>
-      <div style="font-size: 9.5pt; color: #393939; margin-top: 6px;">
+    <div class="footer">
+      <div style="font-size: 9.5pt; color: #000000">
+        实习时间：4个月以上，全国可飞，随时到岗
+      </div>
+      <div style="font-size: 9.5pt; color: #000000; margin-top: 6px">
         更多项目、笔记等相关信息以及下载最新简历：
-        <a href="https://ukrpagynzekp.sealoshzh.site/">https://ukrpagynzekp.sealoshzh.site/</a>
+        <a href="https://ukrpagynzekp.sealoshzh.site/"
+          >https://ukrpagynzekp.sealoshzh.site/</a
+        >
       </div>
     </div>
   </body>
