@@ -13,7 +13,7 @@ export default function ProjectManager() {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState(null)
-  const [form, setForm] = useState({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', highlights: '', timeline: [] })
+  const [form, setForm] = useState({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', link: '', highlights: '', timeline: [] })
   const [uploadingField, setUploadingField] = useState(null)
   const [dragOverField, setDragOverField] = useState(null)
   const imageInputRef = useRef(null)
@@ -30,7 +30,7 @@ export default function ProjectManager() {
 
   const reset = () => {
     setEditing(null)
-    setForm({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', highlights: '', timeline: [] })
+    setForm({ id: '', title: '', description: '', image: '/project.jpg', tags: '', techIcons: '', github: '', link: '', highlights: '', timeline: [] })
   }
 
   const edit = (item) => {
@@ -43,6 +43,7 @@ export default function ProjectManager() {
       tags: (item.tags || []).join(', '),
       techIcons: (item.techIcons || []).join(', '),
       github: item.github || '',
+      link: item.link || '',
       highlights: (item.highlights || []).join('\n'),
       timeline: (item.timeline || []).map(t => ({
         phase: t.phase || '',
@@ -64,6 +65,7 @@ export default function ProjectManager() {
       tags: form.tags.split(',').map(s => s.trim()).filter(Boolean),
       techIcons: form.techIcons.split(',').map(s => s.trim()).filter(Boolean),
       github: form.github,
+      link: form.link,
       highlights: form.highlights.split('\n').map(s => s.trim()).filter(Boolean),
       timeline: (form.timeline || []).map(t => ({
         phase: t.phase,
@@ -182,6 +184,7 @@ export default function ProjectManager() {
           </div>
 
           <input placeholder="GitHub 地址" value={form.github} onChange={e => setForm({...form, github: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
+          <input placeholder="在线演示地址" value={form.link} onChange={e => setForm({...form, link: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <input placeholder="标签，逗号分隔，如 React, Node.js" value={form.tags} onChange={e => setForm({...form, tags: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <input placeholder="技术图标，逗号分隔" value={form.techIcons} onChange={e => setForm({...form, techIcons: e.target.value})} className="px-3 py-2 border rounded-lg text-sm" />
           <textarea placeholder="亮点，每行一个" value={form.highlights} onChange={e => setForm({...form, highlights: e.target.value})} rows={3} className="px-3 py-2 border rounded-lg text-sm md:col-span-2" />

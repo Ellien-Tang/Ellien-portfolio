@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import TechIcon from './TechIcon'
 
-export default function ProjectCard({ index, id, name, description, source_code_link, live_demo_link, techIcons }) {
+export default function ProjectCard({ index, id, name, description, github, link, image, techIcons }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -22,26 +22,32 @@ export default function ProjectCard({ index, id, name, description, source_code_
         <div className="h-full flex flex-col">
           {/* 图片区域 */}
           <div className="relative w-full h-[240px] group rounded-2xl overflow-hidden bg-[#EDEDED] flex-shrink-0 border-2 border-black">
-            <div className="w-full h-full flex items-center justify-center">
-              <span className="text-black text-base font-bold">{name}</span>
-            </div>
+            {image ? (
+              <img src={image} alt={name} className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <span className="text-black text-base font-bold">{name}</span>
+              </div>
+            )}
 
             {/* 悬浮按钮 */}
             <div className="absolute inset-0 flex justify-end m-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div
-                onClick={(e) => {
-                  e.stopPropagation()
-                  window.open(source_code_link, '_blank')
-                }}
-                className="w-12 h-12 rounded-full bg-black flex justify-center items-center cursor-pointer hover:scale-110 transition-transform"
-              >
-                <FaGithub size={24} className="text-white" />
-              </div>
-              {live_demo_link && (
+              {github && (
                 <div
                   onClick={(e) => {
                     e.stopPropagation()
-                    window.open(live_demo_link, '_blank')
+                    window.open(github, '_blank')
+                  }}
+                  className="w-12 h-12 rounded-full bg-black flex justify-center items-center cursor-pointer hover:scale-110 transition-transform"
+                >
+                  <FaGithub size={24} className="text-white" />
+                </div>
+              )}
+              {link && (
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    window.open(link, '_blank')
                   }}
                   className="w-12 h-12 rounded-full bg-black flex justify-center items-center cursor-pointer hover:scale-110 transition-transform"
                 >
